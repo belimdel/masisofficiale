@@ -1,0 +1,68 @@
+---
+const temoignages = [
+  {
+    nom: "Sophie M.",
+    lieu: "Bordeaux",
+    note: 5,
+    texte: "Masis a complètement transformé notre jardin. Travail soigné, délais respectés et équipe très professionnelle. Je recommande sans hésiter.",
+    service: "Création de jardin"
+  },
+  {
+    nom: "Laurent B.",
+    lieu: "Mérignac",
+    note: 5,
+    texte: "Intervention rapide pour l'élagage de nos arbres. Très bon rapport qualité-prix, chantier propre laissé à la fin. On refera appel à eux.",
+    service: "Élagage"
+  },
+  {
+    nom: "Isabelle & Marc T.",
+    lieu: "Arcachon",
+    note: 5,
+    texte: "Installation d'un système d'arrosage automatique nickel. Masis a pris le temps d'expliquer le fonctionnement et le suivi est top.",
+    service: "Arrosage automatique"
+  },
+];
+---
+
+<section class="py-20 bg-gray-900" aria-labelledby="temoignages-titre">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-14">
+      <span class="text-green-500 font-semibold uppercase tracking-widest text-sm">Ils nous font confiance</span>
+      <h2 id="temoignages-titre" class="mt-2 text-4xl font-black text-white uppercase">
+        Avis clients
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {temoignages.map((t) => (
+        <article class="bg-gray-800 p-8 rounded-xl flex flex-col gap-4">
+          <!-- Étoiles -->
+          <div class="flex gap-1" aria-label={`Note : ${t.note} sur 5`}>
+            {Array.from({ length: t.note }).map(() => (
+              <span class="text-green-500 text-xl" aria-hidden="true">★</span>
+            ))}
+          </div>
+          <!-- Texte -->
+          <blockquote class="text-gray-300 leading-relaxed flex-1">
+            "{t.texte}"
+          </blockquote>
+          <!-- Auteur -->
+          <footer class="border-t border-gray-700 pt-4">
+            <p class="text-white font-bold">{t.nom}</p>
+            <p class="text-gray-400 text-sm">{t.lieu} — {t.service}</p>
+          </footer>
+        </article>
+      ))}
+    </div>
+
+    <!-- Lien Google -->
+    <p class="text-center mt-10 text-gray-400 text-sm">
+      Plus de 50 avis vérifiés sur
+      <a href="#" class="text-green-500 font-semibold hover:underline" target="_blank" rel="noopener noreferrer">
+        Google Business
+      </a>
+    </p>
+
+  </div>
+</section>

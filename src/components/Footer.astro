@@ -1,0 +1,257 @@
+---
+// src/components/Footer.astro
+import { Image } from "astro:assets";
+import logo from "../../public/favicon.svg";
+
+const services = [
+    {
+        name: "Tonte & Entretien",
+        href: "/services/tonte-entretien",
+    },
+    {
+        name: "Création de Jardins",
+        href: "/services/creation-jardins",
+    },
+    {
+        name: "Élagage",
+        href: "/services/elagage",
+    },
+    {
+        name: "Terrasses & Allées",
+        href: "/services/terrasses-allees",
+    },
+    {
+        name: "Arrosage Automatique",
+        href: "/services/arrosage-automatique",
+    },
+    {
+        name: "Clôtures & Portails",
+        href: "/services/clotures-portails",
+    },
+];
+
+const villes = [
+    "Bordeaux",
+    "Mérignac",
+    "Pessac",
+    "Talence",
+    "Gradignan",
+    "Villenave-d'Ornon",
+    "Bègles",
+    "Arcachon",
+    "Libourne",
+    "Langon",
+];
+---
+
+<footer class="relative border-t border-white/10 bg-[#0b0f0c] text-white">
+    <!-- SEO Local Hidden Content -->
+    <div class="sr-only">
+        <h2>
+            Paysagiste en Gironde - Bordeaux, Mérignac, Pessac, Talence,
+            Arcachon
+        </h2>
+
+        <p>
+            Masis Paysagiste intervient dans toute la Gironde (33) pour
+            l'entretien de jardins, la tonte de pelouse, l'élagage d'arbres, la
+            création paysagère, les terrasses, les clôtures et l'arrosage
+            automatique.
+        </p>
+
+        <ul>
+            {villes.map((ville) => <li>Paysagiste à {ville}</li>)}
+        </ul>
+    </div>
+
+    <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div class="grid gap-14 lg:grid-cols-4">
+            <!-- Brand -->
+            <div class="lg:col-span-1">
+                <a
+                    href="/"
+                    class="inline-flex items-center gap-3"
+                    aria-label="Masis Paysagiste accueil"
+                >
+                    <div
+                        class="flex h-12 w-12 items-center justify-center rounded-2xl font-bold text-white"
+                    >
+                        <Image src={logo} alt="Masis Paysagiste" />
+                    </div>
+
+                    <div>
+                        <span class="block text-2xl font-bold tracking-tight">
+                            Masis
+                        </span>
+
+                        <span class="text-sm text-neutral-400">
+                            Paysagiste en Gironde
+                        </span>
+                    </div>
+                </a>
+
+                <p class="mt-6 max-w-sm text-sm leading-7 text-neutral-400">
+                    Expert en aménagement extérieur et entretien de jardins en
+                    Gironde. Intervention rapide pour particuliers et
+                    professionnels sur Bordeaux Métropole et tout le 33.
+                </p>
+
+                <!-- Local SEO -->
+                <div class="mt-6 text-sm text-neutral-300">
+                    <p>
+                        <strong>Zone d'intervention :</strong>
+                        Bordeaux, Mérignac, Pessac, Talence, Arcachon, Libourne et
+                        toute la Gironde.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Services -->
+            <div>
+                <h3 class="text-lg font-semibold text-white">Services</h3>
+
+                <ul class="mt-6 space-y-3">
+                    {
+                        services.map((service) => (
+                            <li>
+                                <a
+                                    href={service.href}
+                                    class="text-sm text-neutral-400 transition hover:text-green-400"
+                                >
+                                    {service.name}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            <!-- Navigation -->
+            <div>
+                <h3 class="text-lg font-semibold text-white">Navigation</h3>
+
+                <ul class="mt-6 space-y-3">
+                    <li>
+                        <a
+                            href="/"
+                            class="text-sm text-neutral-400 transition hover:text-green-400"
+                        >
+                            Accueil
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="/services/services"
+                            class="text-sm text-neutral-400 transition hover:text-green-400"
+                        >
+                            Services
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="/realisations"
+                            class="text-sm text-neutral-400 transition hover:text-green-400"
+                        >
+                            Réalisations
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="/zone-intervention"
+                            class="text-sm text-neutral-400 transition hover:text-green-400"
+                        >
+                            Zone d'intervention
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="/contact"
+                            class="text-sm text-neutral-400 transition hover:text-green-400"
+                        >
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h3 class="text-lg font-semibold text-white">Contact</h3>
+
+                <div class="mt-6 space-y-5 text-sm">
+                    <div>
+                        <p class="font-medium text-white">Téléphone</p>
+
+                        <a
+                            href="tel:+33700000000"
+                            class="text-neutral-400 transition hover:text-green-400"
+                        >
+                            07 00 00 00 00
+                        </a>
+                    </div>
+
+                    <div>
+                        <p class="font-medium text-white">Email</p>
+
+                        <a
+                            href="mailto:contact@masis-paysagiste.fr"
+                            class="text-neutral-400 transition hover:text-green-400"
+                        >
+                            contact@masis-paysagiste.fr
+                        </a>
+                    </div>
+
+                    <div>
+                        <p class="font-medium text-white">Horaires</p>
+
+                        <p class="text-neutral-400">Lun - Ven · 8h00 - 18h00</p>
+                    </div>
+
+                    <!-- CTA -->
+                    <a
+                        href="/contact"
+                        class="inline-flex items-center rounded-xl bg-green-700 px-5 py-3 font-medium text-white transition hover:bg-green-600"
+                    >
+                        Demander un devis gratuit
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom -->
+        <div
+            class="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-neutral-500 md:flex-row md:items-center md:justify-between"
+        >
+            <p>
+                © {new Date().getFullYear()} Masis Paysagiste — Tous droits réservés.
+            </p>
+
+            <div class="flex flex-wrap gap-6">
+                <a
+                    href="/mentions-legales"
+                    class="transition hover:text-green-400"
+                >
+                    Mentions légales
+                </a>
+
+                <a
+                    href="/politique-confidentialite"
+                    class="transition hover:text-green-400"
+                >
+                    Confidentialité
+                </a>
+
+                <a
+                    href="/sitemap-index.xml"
+                    class="transition hover:text-green-400"
+                >
+                    Sitemap
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>

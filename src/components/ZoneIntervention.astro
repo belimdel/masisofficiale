@@ -1,0 +1,61 @@
+---
+// Ces villes sont aussi dans le handoff SEO — elles servent le SEO local directement depuis la home
+const villesPrincipales = [
+  "Bordeaux", "Mérignac", "Pessac", "Talence", "Gradignan",
+  "Villenave-d'Ornon", "Bègles", "Lormont", "Cenon", "Bruges",
+  "Le Bouscat", "Blanquefort", "Arcachon", "La Teste-de-Buch",
+  "Gujan-Mestras", "Andernos-les-Bains", "Libourne", "Langon", "Pauillac"
+];
+---
+
+<section class="py-20 bg-white" aria-labelledby="zone-titre">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Texte gauche -->
+      <div>
+        <span class="text-green-600 font-semibold uppercase tracking-widest text-sm">Intervention rapide</span>
+        <h2 id="zone-titre" class="mt-2 text-4xl font-black text-gray-900 uppercase leading-tight">
+          Paysagiste sur toute<br />la Gironde (33)
+        </h2>
+        <p class="mt-6 text-gray-600 text-lg leading-relaxed">
+          Basé en Gironde, Masis Paysagiste intervient rapidement chez les particuliers et les professionnels
+          sur <strong class="text-gray-900">Bordeaux Métropole, le Bassin d'Arcachon</strong> et l'ensemble
+          du département.
+        </p>
+        <p class="mt-4 text-gray-600">
+          Devis gratuit sous 48h. Pas de frais de déplacement sur la zone Bordeaux.
+        </p>
+        <a
+          href="/zone-intervention"
+          class="inline-block mt-8 bg-green-600 text-white font-bold uppercase px-8 py-3 hover:bg-green-700 transition-colors duration-200"
+        >
+          Voir la zone complète
+        </a>
+      </div>
+
+      <!-- Liste villes droite -->
+      <div>
+        <p class="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
+          Quelques villes couvertes
+        </p>
+        <ul class="flex flex-wrap gap-2" aria-label="Villes d'intervention de Masis Paysagiste en Gironde">
+          {villesPrincipales.map((ville) => (
+            <li>
+              <span class="inline-block bg-gray-100 text-gray-700 text-sm font-medium px-4 py-2 rounded-full hover:bg-green-50 hover:text-green-700 transition-colors duration-150">
+                {ville}
+              </span>
+            </li>
+          ))}
+          <li>
+            <span class="inline-block bg-gray-900 text-white text-sm font-medium px-4 py-2 rounded-full">
+              + 30 communes
+            </span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
