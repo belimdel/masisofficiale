@@ -42,7 +42,6 @@ const services = [
 <section class="py-24 bg-white">
   <div class="max-w-7xl mx-auto px-6">
 
-    <!-- Titre section -->
     <div class="text-center mb-16">
       <p class="text-green-600 font-bold uppercase tracking-widest text-sm mb-3">
         Ce que nous faisons
@@ -53,48 +52,48 @@ const services = [
       <div class="w-16 h-1 bg-green-600 mx-auto mt-6"></div>
     </div>
 
-    <!-- Grid services -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {services.map((service) => (
-        <div class="group relative h-72 overflow-hidden block">
-
+        <div
+          class="service-card group relative h-72 overflow-hidden cursor-pointer"
+          data-service-card
+        >
           <!-- Image de fond -->
           <div
-            class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+            class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 group-[.is-open]:scale-110"
             style={`background-image: url('${service.image}');`}
           ></div>
 
-          <!-- Titre visible par défaut -->
-          <div class="absolute inset-0 bg-black/40 flex items-end p-6">
+          <!-- Titre par défaut -->
+          <div class="absolute inset-0 bg-black/40 flex items-end p-6 transition-opacity duration-300 group-hover:opacity-0 group-[.is-open]:opacity-0">
             <h3 class="text-white font-black text-xl uppercase">
               {service.titre}
             </h3>
           </div>
 
-          <!-- Overlay au hover -->
-          <div class="absolute inset-0 bg-gray-900 flex flex-col items-center justify-center p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <!-- Overlay -->
+          <div class="absolute inset-0 bg-gray-900 flex flex-col items-center justify-center p-8 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-[.is-open]:opacity-100">
             <h3 class="text-white font-black text-xl uppercase mb-4">
               {service.titre}
             </h3>
             <p class="text-white/90 text-center leading-relaxed mb-6">
               {service.description}
             </p>
-            <a href={service.href}>
-              <span class="border-2 border-white text-white font-bold px-6 py-2 uppercase tracking-wide text-sm">
+            <a
+              href={service.href}
+              class="border-2 border-white text-white font-bold px-6 py-2 uppercase tracking-wide text-sm hover:bg-white hover:text-gray-900 transition-colors duration-200"
+              onclick="event.stopPropagation()"
+            >
               En savoir plus →
-            </span>
             </a>
-            
           </div>
-
         </div>
       ))}
     </div>
 
-    <!-- CTA -->
     <div class="text-center mt-16">
       <a
-        href="/services/services"
+        href="/services"
         class="border-2 border-gray-900 text-gray-900 font-bold px-10 py-4 uppercase tracking-wide hover:bg-gray-900 hover:text-white transition-colors duration-300"
       >
         Voir tous nos services
@@ -103,3 +102,16 @@ const services = [
 
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('[data-service-card]').forEach((card) => {
+    card.addEventListener('click', () => {
+      // Ferme toutes les autres cartes ouvertes
+      document.querySelectorAll('[data-service-card].is-open').forEach((other) => {
+        if (other !== card) other.classList.remove('is-open');
+      });
+      // Toggle la carte cliquée
+      card.classList.toggle('is-open');
+    });
+  });
+</script>
