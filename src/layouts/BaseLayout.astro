@@ -20,45 +20,43 @@ const { titre, description = "Masis Paysagiste - Aménagement et entretien de ja
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{titre} | Masis Paysagiste</title>
-    <!-- Juste avant </head> dans BaseLayout.astro -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Masis Paysagiste",
-  "description": "Paysagiste professionnel en Gironde. Création et entretien de jardins, élagage, terrasses, arrosage automatique.",
-  "url": "https://masis-paysagiste.fr",
-  "@id": "https://masis-paysagiste.fr",
-  "telephone": "+33XXXXXXXXX",
-  "email": "contact@masis-paysagiste.fr",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Bordeaux",
-    "addressRegion": "Gironde",
-    "postalCode": "33000",
-    "addressCountry": "FR"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 44.8378,
-    "longitude": -0.5792
-  },
-  "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Gironde"
-  },
-  "priceRange": "€€",
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-    "opens": "08:00",
-    "closes": "18:00"
-  }]
-})} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Masis Paysagiste",
+      "description": "Paysagiste professionnel en Gironde. Création et entretien de jardins, élagage, terrasses, arrosage automatique.",
+      "url": "https://masis-paysagiste.fr",
+      "@id": "https://masis-paysagiste.fr",
+      "telephone": "+33XXXXXXXXX",
+      "email": "contact@masis-paysagiste.fr",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bordeaux",
+        "addressRegion": "Gironde",
+        "postalCode": "33000",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 44.8378,
+        "longitude": -0.5792
+      },
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Gironde"
+      },
+      "priceRange": "€€",
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      }]
+    })} />
   </head>
-  <p>TEST ASTRO</p>
   <body class="bg-white text-gray-900 font-sans">
     <Header />
-    <main >
+    <main class="pt-24">
       <slot />
     </main>
     <Footer />
