@@ -1,2 +1,10 @@
 @import "tailwindcss";
 
+@media (hover: none) {
+  .hover\:scale-105:hover,
+  .hover\:shadow-lg:hover,
+  .hover\:translate-x-2:hover {
+    transform: none;
+    box-shadow: inherit;
+  }
+}

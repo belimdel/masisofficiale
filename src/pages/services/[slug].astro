@@ -23,9 +23,7 @@ const { service } = Astro.props;
 
   <!-- HERO -->
 
-  <section
-    class="relative min-h-[60vh] md:h-[70vh] overflow-hidden"
-  >
+  <section class="relative min-h-[60vh] md:h-[70vh] overflow-hidden">
 
     <img
       src={service.image}
@@ -35,9 +33,7 @@ const { service } = Astro.props;
 
     <div class="absolute inset-0 bg-black/70"></div>
 
-    <div
-      class="relative z-10 flex h-full items-center justify-center text-center px-4 sm:px-6"
-    >
+    <div class="relative z-10 flex h-full items-center justify-center text-center px-5">
 
       <div class="max-w-4xl">
 
@@ -79,9 +75,9 @@ const { service } = Astro.props;
 
   <section class="py-16 md:py-24 bg-white">
 
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto px-5 md:px-6">
 
-      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16">
+      <div class="grid lg:grid-cols-2 gap-10 md:gap-16">
 
         <div>
 
@@ -149,7 +145,7 @@ const { service } = Astro.props;
                 >
 
                   <div
-                    class="h-3 w-3 rounded-full bg-green-600"
+                    class="h-3 w-3 rounded-full bg-green-600 shrink-0"
                   ></div>
 
                   <span>{benefit}</span>
@@ -170,13 +166,11 @@ const { service } = Astro.props;
 
   </section>
 
-  <!-- MÉTHODE -->
+  <!-- PROCESS -->
 
-  <section
-    class="py-16 md:py-24 bg-gray-900 text-white"
-  >
+  <section class="py-16 md:py-24 bg-gray-900 text-white">
 
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto px-5 md:px-6">
 
       <h2
         class="
@@ -196,14 +190,15 @@ const { service } = Astro.props;
           grid
           grid-cols-1
           sm:grid-cols-2
-          md:grid-cols-5
+          md:grid-cols-3
+          lg:grid-cols-5
           gap-8
         "
       >
 
         {service.process.map((step, index) => (
 
-          <div class="text-center group">
+          <div class="text-center">
 
             <div
               class="
@@ -217,18 +212,18 @@ const { service } = Astro.props;
                 text-2xl
                 font-bold
                 mb-4
-
                 transition-transform
                 duration-300
-
                 active:scale-110
-                md:group-hover:scale-110
+                md:hover:scale-110
               "
             >
               {index + 1}
             </div>
 
-            <p>{step}</p>
+            <p class="text-gray-200">
+              {step}
+            </p>
 
           </div>
 
@@ -242,11 +237,9 @@ const { service } = Astro.props;
 
   <!-- FAQ -->
 
-  <section
-    class="py-16 md:py-24 bg-white"
-  >
+  <section class="py-16 md:py-24 bg-white">
 
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto px-5 md:px-6">
 
       <h2
         class="
@@ -273,26 +266,22 @@ const { service } = Astro.props;
               shadow-sm
               transition-all
               duration-300
-              md:hover:shadow-lg
+              open:shadow-md
             "
           >
 
             <summary
               class="
-                font-bold
-                text-lg
                 cursor-pointer
                 list-none
+                font-bold
+                text-lg
                 flex
                 items-center
                 justify-between
               "
             >
               {item.question}
-
-              <span class="text-green-600">
-                +
-              </span>
             </summary>
 
             <p
@@ -317,24 +306,9 @@ const { service } = Astro.props;
 
   <!-- CTA -->
 
-  <section
-    class="
-      py-16
-      md:py-24
-      bg-gray-950
-      text-center
-      text-white
-    "
-  >
+  <section class="py-16 md:py-24 bg-gray-950 text-center text-white">
 
-    <div
-      class="
-        max-w-4xl
-        mx-auto
-        px-4
-        sm:px-6
-      "
-    >
+    <div class="max-w-4xl mx-auto px-5 md:px-6">
 
       <h2
         class="
@@ -367,7 +341,6 @@ const { service } = Astro.props;
           py-4
           rounded-lg
           font-bold
-
           transition-all
           duration-300
 
