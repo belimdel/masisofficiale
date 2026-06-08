@@ -28,19 +28,20 @@ const realisations = [
 <section class="py-20 bg-gray-50" aria-labelledby="realisations-titre">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <div class="text-center mb-14">
+    <div data-reveal class="text-center mb-14">
       <span class="text-green-600 font-semibold uppercase tracking-widest text-sm">Nos travaux</span>
       <h2 id="realisations-titre" class="mt-2 text-4xl font-black text-gray-900 uppercase">
         Réalisations en Gironde
       </h2>
-      <p class="mt-4 text-gray-500 max-w-xl mx-auto">
+      <div class="section-divider"></div>
+      <p class="mt-5 text-gray-500 max-w-xl mx-auto">
         Glissez le curseur pour voir la transformation de chaque projet.
       </p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {realisations.map((r) => (
-        <article>
+        <article data-reveal data-reveal-delay={String((realisations.indexOf(r) % 3) + 1)}>
           <div
             class="ba-slider relative overflow-hidden rounded-xl aspect-[4/3] cursor-ew-resize select-none"
             data-slider

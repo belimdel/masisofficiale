@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const titre = "Zone d'intervention Paysagiste Gironde | Masis Paysagiste";
+const description = "Masis Paysagiste intervient sur toute la Gironde (33) : Bordeaux, Mérignac, Pessac, Arcachon et plus de 30 villes. Devis gratuit sous 48h pour tous vos travaux paysagers.";
+
+const secteurs = [
+  {
+    nom: "Bordeaux Métropole",
+    description: "Notre zone principale d'intervention, sans frais de déplacement.",
+    villes: [
+      "Bordeaux", "Mérignac", "Pessac", "Talence", "Gradignan",
+      "Villenave-d'Ornon", "Bègles", "Lormont", "Cenon", "Floirac",
+      "Bruges", "Eysines", "Le Bouscat", "Blanquefort", "Ambès"
+    ]
+  },
+  {
+    nom: "Bassin d'Arcachon",
+    description: "Intervention rapide sur l'ensemble du bassin.",
+    villes: [
+      "Arcachon", "La Teste-de-Buch", "Gujan-Mestras", "Lanton",
+      "Andernos-les-Bains", "Biganos", "Audenge", "Marcheprime"
+    ]
+  },
+  {
+    nom: "Gironde — Autres secteurs",
+    description: "Nous couvrons l'intégralité du département sur devis.",
+    villes: [
+      "Libourne", "Saint-André-de-Cubzac", "Blaye", "Langon",
+      "Bazas", "Lesparre-Médoc", "Pauillac", "Sainte-Foy-la-Grande",
+      "Castillon-la-Bataille"
+    ]
+  }
+];
+
+const services = [
+  { label: "Tonte & Entretien", href: "/services/tonte-entretien" },
+  { label: "Création de jardins", href: "/services/creation-jardins" },
+  { label: "Élagage & Abattage", href: "/services/elagage" },
+  { label: "Terrasses & Allées", href: "/services/terrasses-allees" },
+  { label: "Arrosage Automatique", href: "/services/arrosage-automatique" },
+  { label: "Clôtures & Portails", href: "/services/clotures-portails" },
+];
+---
+
+<BaseLayout titre={titre} description={description}>
+
+  <!-- Hero -->
+  <section class="relative h-64 md:h-80 flex items-center justify-center overflow-hidden bg-gray-900">
+    <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('/images/hero-bg.jpg');"></div>
+    <div class="relative z-10 text-center px-6">
+      <span class="text-green-400 font-bold uppercase tracking-widest text-sm">Gironde (33)</span>
+      <h1 class="mt-3 text-4xl md:text-5xl font-black uppercase text-white">Zone d'intervention</h1>
+      <p class="mt-3 text-gray-300 max-w-xl mx-auto">
+        Paysagiste professionnel sur Bordeaux Métropole, le Bassin d'Arcachon et toute la Gironde.
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro SEO -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <div data-reveal class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          <strong>Masis Paysagiste</strong> est votre spécialiste en aménagement extérieur et entretien de jardins en
+          <strong>Gironde (33)</strong>. Nous intervenons chez les particuliers et les professionnels sur
+          <strong>Bordeaux Métropole</strong>, le <strong>Bassin d'Arcachon</strong> et l'ensemble du département.
+        </p>
+        <p>
+          Que vous soyez à <strong>Bordeaux, Mérignac, Pessac, Arcachon ou Libourne</strong>, nos équipes se déplacent
+          rapidement pour réaliser votre projet paysager : tonte, création de jardin, élagage, terrasse, arrosage automatique
+          ou clôture.
+        </p>
+        <p>
+          Devis gratuit sous 48h. Pas de frais de déplacement sur la zone Bordeaux Métropole.
+        </p>
+      </div>
+
+      <!-- Avantages -->
+      <div data-reveal class="mt-10 grid sm:grid-cols-3 gap-6">
+        {[
+          { icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", titre: "Réponse sous 48h", desc: "Devis gratuit et rapide" },
+          { icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", titre: "Travail garanti", desc: "Chantier propre, résultat soigné" },
+          { icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0", titre: "Particuliers & pros", desc: "Résidences, entreprises, collectivités" },
+        ].map((item) => (
+          <div class="flex items-start gap-4 p-5 bg-gray-50 rounded-xl">
+            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d={item.icon} />
+              </svg>
+            </div>
+            <div>
+              <p class="font-bold text-gray-900 text-sm">{item.titre}</p>
+              <p class="text-gray-500 text-sm">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Secteurs d'intervention -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div data-reveal class="text-center mb-14">
+        <span class="text-green-600 font-bold uppercase tracking-widest text-sm">Toute la Gironde</span>
+        <h2 class="mt-2 text-4xl font-black text-gray-900 uppercase">Secteurs couverts</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {secteurs.map((secteur, i) => (
+          <div
+            data-reveal
+            data-reveal-delay={String(i + 1)}
+            class="bg-white border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all duration-300 p-8"
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-2 h-8 bg-green-600 rounded-full shrink-0"></div>
+              <h3 class="text-xl font-black text-gray-900">{secteur.nom}</h3>
+            </div>
+            <p class="text-sm text-gray-500 mb-5 pl-5">{secteur.description}</p>
+            <ul class="space-y-1.5 pl-5" aria-label={`Villes du secteur ${secteur.nom}`}>
+              {secteur.villes.map((ville) => (
+                <li class="text-sm text-gray-700 flex items-center gap-2">
+                  <span class="text-green-500 text-xs">●</span>
+                  Paysagiste à {ville}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <p data-reveal class="text-center mt-10 text-gray-500 text-sm">
+        Votre ville n'est pas listée ? <a href="/contact" class="text-green-600 font-semibold hover:underline">Contactez-nous</a> — nous intervenons dans toute la Gironde.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Services disponibles -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div data-reveal class="text-center mb-12">
+        <h2 class="text-3xl font-black text-gray-900 uppercase">
+          Nos services disponibles partout en Gironde
+        </h2>
+      </div>
+
+      <div data-reveal class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {services.map((s) => (
+          <a
+            href={s.href}
+            class="group flex flex-col items-center text-center p-5 border border-gray-100 hover:border-green-500 hover:bg-green-50 transition-all duration-200"
+          >
+            <span class="text-sm font-bold text-gray-700 group-hover:text-green-700 transition-colors leading-tight">{s.label}</span>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gray-900 text-white text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 data-reveal class="text-4xl font-black uppercase mb-4">
+        Votre projet en Gironde ?
+      </h2>
+      <p data-reveal class="text-gray-300 text-lg mb-8">
+        Contactez Masis Paysagiste pour un devis gratuit, quel que soit votre secteur.
+      </p>
+      <a
+        data-reveal
+        href="/contact"
+        class="inline-flex items-center gap-3 bg-green-600 hover:bg-green-500 text-white font-bold px-10 py-4 uppercase tracking-wide transition-all duration-200 hover:scale-105"
+      >
+        Demander un devis gratuit
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

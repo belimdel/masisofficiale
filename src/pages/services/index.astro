@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { services } from '../../data/services';
+
+const titre = "Services Paysagiste en Gironde | Masis Paysagiste";
+const description = "Découvrez tous les services de Masis Paysagiste en Gironde : tonte, création de jardins, élagage, terrasses, arrosage automatique, clôtures. Devis gratuit.";
+---
+
+<BaseLayout titre={titre} description={description}>
+
+  <!-- Hero section -->
+  <section class="relative h-72 md:h-96 flex items-center justify-center overflow-hidden bg-gray-900">
+    <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('/images/hero-bg.jpg');"></div>
+    <div class="relative z-10 text-center px-6">
+      <span class="text-green-400 font-bold uppercase tracking-widest text-sm">Ce que nous faisons</span>
+      <h1 class="mt-3 text-4xl md:text-6xl font-black uppercase text-white">Nos Services</h1>
+      <p class="mt-4 text-gray-300 text-lg max-w-2xl mx-auto">
+        Expert paysagiste en Gironde — tonte, jardins, élagage, terrasses, arrosage, clôtures.
+      </p>
+    </div>
+  </section>
+
+  <!-- Grille des services -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {services.map((service, index) => (
+          <article
+            data-reveal
+            data-reveal-delay={String((index % 3) + 1)}
+            class="group flex flex-col border border-gray-100 hover:border-green-200 hover:shadow-xl transition-all duration-300"
+          >
+            <!-- Image -->
+            <div class="relative h-56 overflow-hidden">
+              <img
+                src={service.image}
+                alt={service.title}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+              <span class="absolute top-4 left-4 bg-green-600 text-white text-xs font-bold uppercase px-3 py-1 tracking-wider">
+                {service.heroBadge}
+              </span>
+            </div>
+
+            <!-- Contenu -->
+            <div class="flex flex-col flex-1 p-7">
+              <h2 class="text-xl font-black uppercase text-gray-900 mb-3 group-hover:text-green-700 transition-colors duration-200">
+                {service.title}
+              </h2>
+              <p class="text-gray-600 text-sm leading-relaxed mb-5 flex-1">
+                {service.intro}
+              </p>
+
+              <!-- Prestations -->
+              <ul class="space-y-1.5 mb-6">
+                {service.benefits.slice(0, 4).map((b) => (
+                  <li class="flex items-center gap-2.5 text-sm text-gray-700">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-600 shrink-0"></span>
+                    {b}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={`/services/${service.slug}`}
+                class="inline-flex items-center justify-center gap-2 border-2 border-gray-900 text-gray-900 font-bold px-6 py-3 uppercase tracking-wide text-sm hover:bg-green-600 hover:border-green-600 hover:text-white transition-all duration-200 mt-auto"
+              >
+                En savoir plus
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gray-900 text-white text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 data-reveal class="text-4xl font-black uppercase mb-4">Un projet en tête ?</h2>
+      <p data-reveal class="text-gray-300 text-lg mb-8">
+        Contactez-nous pour une visite gratuite et un devis sans engagement sous 48h.
+      </p>
+      <a
+        data-reveal
+        href="/contact"
+        class="inline-block bg-green-600 hover:bg-green-500 text-white font-bold px-10 py-4 uppercase tracking-wide transition-all duration-200 hover:scale-105"
+      >
+        Demander un devis gratuit
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
