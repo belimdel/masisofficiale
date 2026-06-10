@@ -14,7 +14,7 @@ const stats = [
         <div
           data-reveal
           data-reveal-delay={String(index + 1)}
-          class="group text-center py-6 px-4 cursor-default hover:bg-gray-50 transition-colors duration-300 rounded-xl"
+          class="group text-center py-6 px-4 cursor-default hover:bg-gray-50 transition-colors duration-300 rounded-xl tap-target"
         >
           <!-- Icône -->
           <div class="flex justify-center mb-4">
@@ -42,33 +42,33 @@ const stats = [
 </section>
 
 <script>
-  document.querySelectorAll('[data-counter]').forEach((el) => {
-    const htmlEl = el as HTMLElement;
-    const target = parseInt(htmlEl.dataset.counter ?? '0', 10);
-    const suffix = htmlEl.dataset.suffix ?? '';
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-    const obs = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      obs.disconnect();
+  gsap.registerPlugin(ScrollTrigger);
 
-      const duration = 1600;
-      const startTime = performance.now();
+  document.querySelectorAll<HTMLElement>('[data-counter]').forEach((el) => {
+    const target = parseInt(el.dataset.counter ?? '0', 10);
+    const suffix = el.dataset.suffix ?? '';
+    const obj = { val: 0 };
 
-      function easeOut(t: number) {
-        return 1 - Math.pow(1 - t, 3);
-      }
+    // Afficher 0 au départ
+    el.textContent = '0' + suffix;
 
-      function tick(now: number) {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const current = Math.round(easeOut(progress) * target);
-        htmlEl.textContent = current + suffix;
-        if (progress < 1) requestAnimationFrame(tick);
-      }
-
-      requestAnimationFrame(tick);
-    }, { threshold: 0.5 });
-
-    obs.observe(el);
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        gsap.to(obj, {
+          val: target,
+          duration: 1.8,
+          ease: 'power2.out',
+          onUpdate: () => {
+            el.textContent = Math.round(obj.val) + suffix;
+          },
+        });
+      },
+    });
   });
 </script>
