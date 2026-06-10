@@ -19,7 +19,7 @@ const services = [
 
   <!-- Hero -->
   <section class="relative h-64 md:h-80 flex items-center justify-center overflow-hidden bg-gray-900">
-    <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('/images/hero-bg.jpg');"></div>
+    <div id="contact-hero-bg" class="absolute inset-0 bg-cover bg-center opacity-20 will-change-transform scale-110" style="background-image: url('/images/hero-bg.jpg');"></div>
     <div class="relative z-10 text-center px-6">
       <span class="text-green-400 font-bold uppercase tracking-widest text-sm">Réponse sous 48h</span>
       <h1 class="mt-3 text-4xl md:text-5xl font-black uppercase text-white">Contactez-nous</h1>
@@ -298,6 +298,16 @@ const services = [
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
   gsap.registerPlugin(ScrollTrigger);
+
+  // ── Parallax hero ─────────────────────────────────────────
+  const heroBg = document.getElementById('contact-hero-bg');
+  if (heroBg) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY <= 600) {
+        heroBg.style.transform = `scale(1.1) translateY(${window.scrollY * 0.15}px)`;
+      }
+    }, { passive: true });
+  }
 
   // ── Animation stagger des champs au scroll ───────────────
   const formFields = document.querySelectorAll<HTMLElement>('[data-form-field]');

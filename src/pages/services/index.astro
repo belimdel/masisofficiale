@@ -10,7 +10,7 @@ const description = "Découvrez tous les services de Masis Paysagiste en Gironde
 
   <!-- Hero section -->
   <section class="relative h-72 md:h-96 flex items-center justify-center overflow-hidden bg-gray-900">
-    <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('/images/hero-bg.jpg');"></div>
+    <div id="services-hero-bg" class="absolute inset-0 bg-cover bg-center opacity-30 will-change-transform scale-110" style="background-image: url('/images/hero-bg.jpg');"></div>
     <div class="relative z-10 text-center px-6">
       <span class="text-green-400 font-bold uppercase tracking-widest text-sm">Ce que nous faisons</span>
       <h1 class="mt-3 text-4xl md:text-6xl font-black uppercase text-white">Nos Services</h1>
@@ -99,3 +99,14 @@ const description = "Découvrez tous les services de Masis Paysagiste en Gironde
   </section>
 
 </BaseLayout>
+
+<script>
+  const heroBg = document.getElementById('services-hero-bg');
+  if (heroBg) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY <= 600) {
+        heroBg.style.transform = `scale(1.1) translateY(${window.scrollY * 0.15}px)`;
+      }
+    }, { passive: true });
+  }
+</script>

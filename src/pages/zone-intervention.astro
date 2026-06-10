@@ -7,7 +7,10 @@ const description = "Masis Paysagiste intervient sur toute la Gironde (33) : Bor
 const secteurs = [
   {
     nom: "Bordeaux Métropole",
-    description: "Notre zone principale d'intervention, sans frais de déplacement.",
+    badge: "Zone principale",
+    badgeColor: "bg-green-600",
+    description: "Notre zone principale d'intervention — sans frais de déplacement.",
+    icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
     villes: [
       "Bordeaux", "Mérignac", "Pessac", "Talence", "Gradignan",
       "Villenave-d'Ornon", "Bègles", "Lormont", "Cenon", "Floirac",
@@ -16,7 +19,10 @@ const secteurs = [
   },
   {
     nom: "Bassin d'Arcachon",
-    description: "Intervention rapide sur l'ensemble du bassin.",
+    badge: "Intervention rapide",
+    badgeColor: "bg-blue-600",
+    description: "Toutes vos prestations paysagères sur l'ensemble du bassin.",
+    icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
     villes: [
       "Arcachon", "La Teste-de-Buch", "Gujan-Mestras", "Lanton",
       "Andernos-les-Bains", "Biganos", "Audenge", "Marcheprime"
@@ -24,7 +30,10 @@ const secteurs = [
   },
   {
     nom: "Gironde — Autres secteurs",
-    description: "Nous couvrons l'intégralité du département sur devis.",
+    badge: "Sur devis",
+    badgeColor: "bg-gray-600",
+    description: "Nous couvrons l'intégralité du département, partout sur devis.",
+    icon: "M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7",
     villes: [
       "Libourne", "Saint-André-de-Cubzac", "Blaye", "Langon",
       "Bazas", "Lesparre-Médoc", "Pauillac", "Sainte-Foy-la-Grande",
@@ -34,64 +43,90 @@ const secteurs = [
 ];
 
 const services = [
-  { label: "Tonte & Entretien", href: "/services/tonte-entretien" },
-  { label: "Création de jardins", href: "/services/creation-jardins" },
-  { label: "Élagage & Abattage", href: "/services/elagage" },
-  { label: "Terrasses & Allées", href: "/services/terrasses-allees" },
-  { label: "Arrosage Automatique", href: "/services/arrosage-automatique" },
-  { label: "Clôtures & Portails", href: "/services/clotures-portails" },
+  { label: "Tonte & Entretien", href: "/services/tonte-entretien", icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" },
+  { label: "Création de jardins", href: "/services/creation-jardins", icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" },
+  { label: "Élagage & Abattage", href: "/services/elagage", icon: "M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" },
+  { label: "Terrasses & Allées", href: "/services/terrasses-allees", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" },
+  { label: "Arrosage Automatique", href: "/services/arrosage-automatique", icon: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" },
+  { label: "Clôtures & Portails", href: "/services/clotures-portails", icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" },
 ];
 ---
 
 <BaseLayout titre={titre} description={description}>
 
-  <!-- Hero -->
-  <section class="relative h-64 md:h-80 flex items-center justify-center overflow-hidden bg-gray-900">
-    <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('/images/hero-bg.jpg');"></div>
-    <div class="relative z-10 text-center px-6">
-      <span class="text-green-400 font-bold uppercase tracking-widest text-sm">Gironde (33)</span>
-      <h1 class="mt-3 text-4xl md:text-5xl font-black uppercase text-white">Zone d'intervention</h1>
-      <p class="mt-3 text-gray-300 max-w-xl mx-auto">
-        Paysagiste professionnel sur Bordeaux Métropole, le Bassin d'Arcachon et toute la Gironde.
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════════════════ -->
+  <section class="relative h-[75vh] min-h-[520px] flex items-center justify-center overflow-hidden">
+
+    <div id="zone-hero-bg" class="absolute inset-0 bg-cover bg-center will-change-transform scale-110"
+      style="background-image: url('/images/hero-bg.jpg');" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/85" aria-hidden="true"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent"></div>
+
+    <div class="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
+
+      <p class="hero-badge inline-block text-green-400 font-bold uppercase tracking-widest text-sm mb-5 border border-green-400/30 px-5 py-2 rounded-full">
+        Paysagiste · Gironde (33)
       </p>
+
+      <h1 class="hero-title text-5xl md:text-7xl font-black uppercase leading-[1.05] mb-6">
+        Zone<br/>
+        <span class="text-green-400">d'intervention</span>
+      </h1>
+
+      <p class="hero-sub text-xl text-gray-200 max-w-2xl mx-auto mb-10">
+        Bordeaux Métropole, Bassin d'Arcachon et toute la Gironde.
+        Devis gratuit sous 48h.
+      </p>
+
+      <!-- Mini stats dans le hero -->
+      <div class="hero-ctas flex flex-wrap justify-center gap-6 mb-10 text-sm">
+        {[
+          { n: "30+", l: "villes couvertes" },
+          { n: "48h", l: "délai de réponse" },
+          { n: "0€", l: "frais dépl. Bordeaux" },
+        ].map((s) => (
+          <div class="flex flex-col items-center">
+            <span class="text-3xl font-black text-400">{s.n}</span>
+            <span class="text-gray-300 text-xs uppercase tracking-wider">{s.l}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="hero-ctas flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+33700000000"
+          class="inline-flex items-center justify-center gap-3 border-2 border-white/60 text-white font-bold px-9 py-4 uppercase tracking-wide hover:bg-white hover:text-gray-900 transition-all duration-300">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          07 00 00 00 00
+        </a>
+      </div>
+
     </div>
   </section>
 
-  <!-- Intro SEO -->
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-6">
-      <div data-reveal class="prose prose-lg max-w-none text-gray-700">
-        <p>
-          <strong>Masis Paysagiste</strong> est votre spécialiste en aménagement extérieur et entretien de jardins en
-          <strong>Gironde (33)</strong>. Nous intervenons chez les particuliers et les professionnels sur
-          <strong>Bordeaux Métropole</strong>, le <strong>Bassin d'Arcachon</strong> et l'ensemble du département.
-        </p>
-        <p>
-          Que vous soyez à <strong>Bordeaux, Mérignac, Pessac, Arcachon ou Libourne</strong>, nos équipes se déplacent
-          rapidement pour réaliser votre projet paysager : tonte, création de jardin, élagage, terrasse, arrosage automatique
-          ou clôture.
-        </p>
-        <p>
-          Devis gratuit sous 48h. Pas de frais de déplacement sur la zone Bordeaux Métropole.
-        </p>
-      </div>
-
-      <!-- Avantages -->
-      <div data-reveal class="mt-10 grid sm:grid-cols-3 gap-6">
+  <!-- ═══════════════════════════════════════════════════════
+       BANDE ENGAGEMENTS
+  ══════════════════════════════════════════════════════════ -->
+  <section class="bg-white border-b border-gray-100 py-10">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {[
-          { icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", titre: "Réponse sous 48h", desc: "Devis gratuit et rapide" },
-          { icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", titre: "Travail garanti", desc: "Chantier propre, résultat soigné" },
-          { icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0", titre: "Particuliers & pros", desc: "Résidences, entreprises, collectivités" },
+          { icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z", titre: "Devis gratuit sous 48h", texte: "Visite sur site incluse, sans engagement" },
+          { icon: "M13 10V3L4 14h7v7l9-11h-7z", titre: "Intervention rapide", texte: "Équipes disponibles dans tout le département" },
+          { icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0", titre: "Particuliers & professionnels", texte: "Résidences, entreprises, collectivités" },
         ].map((item) => (
-          <div class="flex items-start gap-4 p-5 bg-gray-50 rounded-xl">
-            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
-              <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
+              <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d={item.icon} />
               </svg>
             </div>
             <div>
               <p class="font-bold text-gray-900 text-sm">{item.titre}</p>
-              <p class="text-gray-500 text-sm">{item.desc}</p>
+              <p class="text-gray-500 text-xs">{item.texte}</p>
             </div>
           </div>
         ))}
@@ -99,64 +134,99 @@ const services = [
     </div>
   </section>
 
-  <!-- Secteurs d'intervention -->
-  <section class="py-16 bg-gray-50">
+  <!-- ═══════════════════════════════════════════════════════
+       SECTEURS
+  ══════════════════════════════════════════════════════════ -->
+  <section class="py-24 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6">
 
-      <div data-reveal class="text-center mb-14">
-        <span class="text-green-600 font-bold uppercase tracking-widest text-sm">Toute la Gironde</span>
-        <h2 class="mt-2 text-4xl font-black text-gray-900 uppercase">Secteurs couverts</h2>
+      <div data-reveal class="text-center mb-16">
+        <p class="text-green-600 font-bold uppercase tracking-widest text-sm mb-3">Toute la Gironde</p>
+        <h2 class="text-4xl md:text-5xl font-black uppercase text-gray-900">Secteurs couverts</h2>
         <div class="section-divider"></div>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-3 gap-6">
         {secteurs.map((secteur, i) => (
           <div
             data-reveal
             data-reveal-delay={String(i + 1)}
-            class="bg-white border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all duration-300 p-8"
+            class="group bg-white border border-gray-200 hover:border-green-400 hover:shadow-lg p-8 transition-all duration-300"
           >
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-2 h-8 bg-green-600 rounded-full shrink-0"></div>
-              <h3 class="text-xl font-black text-gray-900">{secteur.nom}</h3>
+            <!-- Icône + Badge -->
+            <div class="flex items-start justify-between mb-5">
+              <div class="w-14 h-14 rounded-xl bg-green-50 group-hover:bg-green-600 flex items-center justify-center transition-colors duration-300">
+                <svg class="w-7 h-7 text-green-600 group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={secteur.icon} />
+                </svg>
+              </div>
+              <span class={`${secteur.badgeColor} text-white text-xs font-bold uppercase px-3 py-1 rounded-full`}>
+                {secteur.badge}
+              </span>
             </div>
-            <p class="text-sm text-gray-500 mb-5 pl-5">{secteur.description}</p>
-            <ul class="space-y-1.5 pl-5" aria-label={`Villes du secteur ${secteur.nom}`}>
+
+            <!-- Nom + description -->
+            <h3 class="text-xl font-black text-gray-900 mb-2">{secteur.nom}</h3>
+            <p class="text-gray-500 text-sm mb-6">{secteur.description}</p>
+
+            <!-- Villes en chips -->
+            <div class="flex flex-wrap gap-2">
               {secteur.villes.map((ville) => (
-                <li class="text-sm text-gray-700 flex items-center gap-2">
-                  <span class="text-green-500 text-xs">●</span>
-                  Paysagiste à {ville}
-                </li>
+                <span class="bg-gray-100 text-gray-600 text-xs font-medium px-3 py-1 rounded-full">
+                  {ville}
+                </span>
               ))}
-            </ul>
+            </div>
+
           </div>
         ))}
       </div>
 
       <p data-reveal class="text-center mt-10 text-gray-500 text-sm">
-        Votre ville n'est pas listée ? <a href="/contact" class="text-green-600 font-semibold hover:underline">Contactez-nous</a> — nous intervenons dans toute la Gironde.
+        Votre ville n'est pas listée ?
+        <a href="/contact" class="text-green-600 font-semibold hover:underline transition-colors">
+          Contactez-nous
+        </a>
+        — nous intervenons partout en Gironde.
       </p>
 
     </div>
   </section>
 
-  <!-- Services disponibles -->
-  <section class="py-16 bg-white">
+  <!-- ═══════════════════════════════════════════════════════
+       SERVICES DISPONIBLES
+  ══════════════════════════════════════════════════════════ -->
+  <section class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-6">
 
-      <div data-reveal class="text-center mb-12">
-        <h2 class="text-3xl font-black text-gray-900 uppercase">
-          Nos services disponibles partout en Gironde
-        </h2>
+      <div data-reveal class="text-center mb-16">
+        <p class="text-green-600 font-bold uppercase tracking-widest text-sm mb-3">Partout en Gironde</p>
+        <h2 class="text-4xl md:text-5xl font-black uppercase text-gray-900">Nos services</h2>
+        <div class="section-divider"></div>
       </div>
 
-      <div data-reveal class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {services.map((s) => (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((s, i) => (
           <a
             href={s.href}
-            class="group flex flex-col items-center text-center p-5 border border-gray-100 hover:border-green-500 hover:bg-green-50 transition-all duration-200"
+            data-reveal
+            data-reveal-delay={String((i % 3) + 1)}
+            class="group flex items-center gap-5 p-6 border border-gray-100 hover:border-green-500 hover:shadow-lg transition-all duration-300"
           >
-            <span class="text-sm font-bold text-gray-700 group-hover:text-green-700 transition-colors leading-tight">{s.label}</span>
+            <div class="w-14 h-14 rounded-xl bg-green-50 group-hover:bg-green-600 flex items-center justify-center shrink-0 transition-colors duration-300">
+              <svg class="w-7 h-7 text-green-600 group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d={s.icon} />
+              </svg>
+            </div>
+            <div>
+              <p class="font-black text-gray-900 group-hover:text-green-700 transition-colors duration-200 uppercase text-sm tracking-wide">{s.label}</p>
+              <p class="text-gray-400 text-xs mt-1 flex items-center gap-1">
+                Toute la Gironde
+                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </p>
+            </div>
           </a>
         ))}
       </div>
@@ -164,26 +234,97 @@ const services = [
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="py-20 bg-gray-900 text-white text-center">
-    <div class="max-w-3xl mx-auto px-6">
-      <h2 data-reveal class="text-4xl font-black uppercase mb-4">
-        Votre projet en Gironde ?
+  <!-- ═══════════════════════════════════════════════════════
+       INTRO TEXTE SEO (fond gris doux)
+  ══════════════════════════════════════════════════════════ -->
+  <section class="py-16 bg-gray-50 border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-6">
+      <div data-reveal class="grid sm:grid-cols-2 gap-10 text-gray-700">
+        <div>
+          <h3 class="text-xl font-black uppercase text-gray-900 mb-4">Votre paysagiste en Gironde</h3>
+          <p class="leading-relaxed text-sm">
+            <strong>Masis Paysagiste</strong> intervient chez les particuliers et professionnels sur
+            <strong>Bordeaux Métropole</strong>, le <strong>Bassin d'Arcachon</strong> et l'ensemble
+            de la <strong>Gironde (33)</strong>.
+          </p>
+          <p class="leading-relaxed text-sm mt-3">
+            Que vous soyez à Bordeaux, Mérignac, Pessac, Arcachon ou Libourne, nos équipes se
+            déplacent rapidement pour réaliser votre projet paysager.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-black uppercase text-gray-900 mb-4">Nos engagements</h3>
+          <ul class="space-y-3">
+            {[
+              "Devis gratuit sous 48h, quel que soit le secteur",
+              "Pas de frais de déplacement sur Bordeaux Métropole",
+              "Visite sur site systématiquement incluse",
+              "Travail soigné et chantier propre garanti",
+            ].map((item) => (
+              <li class="flex items-start gap-3 text-sm">
+                <span class="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-3 h-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════════════════════════════ -->
+  <section class="py-28 bg-gray-950 text-white relative overflow-hidden">
+    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+
+      <p data-reveal class="text-green-400 font-bold uppercase tracking-widest text-sm mb-6">Votre projet en Gironde ?</p>
+
+      <h2 data-reveal class="text-4xl md:text-6xl font-black uppercase leading-tight mb-6">
+        Intervenant sur<br/>
+        <span class="text-green-400">tout le département</span>
       </h2>
-      <p data-reveal class="text-gray-300 text-lg mb-8">
-        Contactez Masis Paysagiste pour un devis gratuit, quel que soit votre secteur.
+
+      <p data-reveal class="text-gray-300 text-xl max-w-xl mx-auto mb-12">
+        Contactez Masis Paysagiste pour un devis gratuit,<br/>
+        quel que soit votre secteur en Gironde.
       </p>
-      <a
-        data-reveal
-        href="/contact"
-        class="inline-flex items-center gap-3 bg-green-600 hover:bg-green-500 text-white font-bold px-10 py-4 uppercase tracking-wide transition-all duration-200 hover:scale-105"
-      >
-        Demander un devis gratuit
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
-      </a>
+
+      <div data-reveal class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact"
+          class="group inline-flex items-center justify-center gap-3 bg-green-600 hover:bg-green-500 text-white font-bold px-10 py-4 uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-600/25">
+          <svg class="w-5 h-5 transition-transform group-hover:rotate-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          Demander un devis gratuit
+        </a>
+        <a href="tel:+33700000000"
+          class="group inline-flex items-center justify-center gap-3 border-2 border-white/40 hover:border-white text-white font-bold px-10 py-4 uppercase tracking-wide transition-all duration-300 hover:bg-white hover:text-gray-900">
+          <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          07 00 00 00 00
+        </a>
+      </div>
+
     </div>
   </section>
 
 </BaseLayout>
+
+<script>
+  const heroBg = document.getElementById('zone-hero-bg');
+  if (heroBg) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY <= window.innerHeight) {
+        heroBg.style.transform = `scale(1.1) translateY(${window.scrollY * 0.2}px)`;
+      }
+    }, { passive: true });
+  }
+</script>
