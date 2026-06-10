@@ -17,11 +17,11 @@
   <!-- Contenu -->
   <div class="relative z-10 text-center text-white px-6 max-w-5xl mx-auto">
 
-    <p id="hero-badge" style="opacity:0" class="inline-block text-green-400 font-bold uppercase tracking-widest text-sm mb-5 border border-green-400/30 px-4 py-1.5 rounded-full">
+    <p class="hero-badge inline-block text-green-400 font-bold uppercase tracking-widest text-sm mb-5 border border-green-400/30 px-4 py-1.5 rounded-full">
       Paysagiste en Gironde · Bordeaux &amp; toute la région
     </p>
 
-    <h1 id="hero-title" style="opacity:0" class="text-5xl md:text-7xl font-black uppercase leading-[1.05] mb-7">
+    <h1 class="hero-title text-5xl md:text-7xl font-black uppercase leading-[1.05] mb-7">
       Transformez votre<br/>
       <span class="text-green-400 relative">
         espace extérieur
@@ -31,10 +31,10 @@
       </span>
     </h1>
 
-    <div id="hero-ctas" style="opacity:0" class="flex flex-col sm:flex-row gap-4 justify-center">
+    <div class="hero-ctas flex flex-col sm:flex-row gap-4 justify-center">
       <a
         href="/contact"
-        class="group inline-flex items-center justify-center gap-3 bg-green-600 text-white font-bold px-9 py-4 uppercase tracking-wide hover:bg-green-500 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-600/30 tap-target active:scale-95 ripple-container"
+        class="group inline-flex items-center justify-center gap-3 bg-green-600 text-white font-bold px-9 py-4 uppercase tracking-wide hover:bg-green-500 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-600/30"
       >
         <svg class="w-5 h-5 shrink-0 transition-transform group-hover:rotate-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
@@ -43,7 +43,7 @@
       </a>
       <a
         href="/realisations"
-        class="inline-flex items-center justify-center gap-2 border-2 border-white/70 text-white font-bold px-9 py-4 uppercase tracking-wide hover:bg-white hover:text-gray-900 transition-all duration-300 tap-target active:scale-95"
+        class="inline-flex items-center justify-center gap-2 border-2 border-white/70 text-white font-bold px-9 py-4 uppercase tracking-wide hover:bg-white hover:text-gray-900 transition-all duration-300"
       >
         Voir nos réalisations
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -53,7 +53,7 @@
     </div>
 
     <!-- Garanties rapides -->
-    <div id="hero-guarantees" style="opacity:0" class="mt-12 flex flex-wrap justify-center gap-6 text-sm text-gray-300">
+    <div class="hero-ctas mt-12 flex flex-wrap justify-center gap-6 text-sm text-gray-300">
       {[
         "✓ Devis gratuit sous 48h",
         "✓ Intervention sur toute la Gironde",
@@ -65,59 +65,17 @@
 
   </div>
 
-  <!-- Swipe hint mobile uniquement -->
-  <div id="hero-scroll-hint" class="md:hidden absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/60 text-xs pointer-events-none" aria-hidden="true">
-    <span class="swipe-hint-icon text-lg">↓</span>
-    <span>Défiler</span>
-  </div>
-
 </section>
 
 <script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  // ── Animation d'entrée GSAP ──────────────────────────────
-  const tl = gsap.timeline({ delay: 0.15 });
-
-  tl.fromTo('#hero-badge',
-    { opacity: 0, y: 16 },
-    { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
-  )
-  .fromTo('#hero-title',
-    { opacity: 0, y: 28 },
-    { opacity: 1, y: 0, duration: 0.75, ease: 'expo.out' },
-    '-=0.3'
-  )
-  .fromTo('#hero-ctas',
-    { opacity: 0, y: 20 },
-    { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
-    '-=0.4'
-  )
-  .fromTo('#hero-guarantees',
-    { opacity: 0 },
-    { opacity: 1, duration: 0.5 },
-    '-=0.2'
-  );
-
-  // ── Parallax desktop uniquement (évite le jank iOS) ─────
-  const isTouch = window.matchMedia('(hover: none)').matches;
-
-  if (!isTouch) {
-    gsap.to('#hero-bg', {
-      yPercent: 18,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: 'section',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-      },
-    });
-  } else {
-    const heroBg = document.getElementById('hero-bg');
-    if (heroBg) heroBg.style.transform = 'scale(1.1)';
+  const heroBg = document.getElementById('hero-bg');
+  if (heroBg) {
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const maxScroll = window.innerHeight;
+      if (scrollY <= maxScroll) {
+        heroBg.style.transform = `scale(1.1) translateY(${scrollY * 0.25}px)`;
+      }
+    }, { passive: true });
   }
 </script>

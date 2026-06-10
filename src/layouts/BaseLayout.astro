@@ -91,7 +91,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://masis-pa
     <!-- Bouton flottant téléphone -->
     <a
       href="tel:+33700000000"
-      class="fixed bottom-6 right-6 z-50 bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-500 hover:scale-110 transition-all duration-300 group tap-target ripple-container active:scale-90"
+      class="fixed bottom-6 right-6 z-50 bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-500 hover:scale-110 transition-all duration-300 group"
       aria-label="Appeler Masis Paysagiste"
       title="Appeler Masis Paysagiste"
     >
@@ -102,32 +102,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://masis-pa
       <span class="absolute inset-0 rounded-full bg-green-600 ping-slow"></span>
     </a>
 
-    <!-- Lenis + GSAP + scroll-reveal global -->
+    <!-- Barre de progression + scroll-reveal global -->
     <script>
-      import Lenis from 'lenis';
-      import { gsap } from 'gsap';
-      import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-      gsap.registerPlugin(ScrollTrigger);
-
-      // ── Lenis smooth scroll ──────────────────────────────────
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        touchMultiplier: 1.5,
-        syncTouch: true,
-      });
-
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time: number) => { lenis.raf(time * 1000); });
-      gsap.ticker.lagSmoothing(0);
-
       // ── Barre de progression ─────────────────────────────────
       const progressBar = document.getElementById('scroll-progress') as HTMLElement | null;
       if (progressBar) {
-        lenis.on('scroll', ({ progress }: { progress: number }) => {
-          progressBar.style.width = `${progress * 100}%`;
-        });
+        window.addEventListener('scroll', () => {
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (docHeight > 0) progressBar.style.width = (window.scrollY / docHeight * 100) + '%';
+        }, { passive: true });
       }
 
       // ── Scroll-reveal (data-reveal) ──────────────────────────
@@ -143,30 +126,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://masis-pa
         { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
       );
       document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
-
-      // ── Ripple sur boutons et liens ──────────────────────────
-      function createRipple(e: PointerEvent) {
-        const target = e.currentTarget as HTMLElement;
-        const rect = target.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height) * 2;
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-        const ripple = document.createElement('span');
-        ripple.className = 'ripple-wave';
-        ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px`;
-        target.appendChild(ripple);
-        ripple.addEventListener('animationend', () => ripple.remove());
-      }
-
-      document.querySelectorAll<HTMLElement>('button, [data-ripple]').forEach((el) => {
-        if (!el.classList.contains('ripple-container')) {
-          el.classList.add('ripple-container');
-        }
-        el.addEventListener('pointerdown', createRipple);
-      });
-
-      // ── Refresh ScrollTrigger après chargement complet ───────
-      window.addEventListener('load', () => { ScrollTrigger.refresh(); });
     </script>
   </body>
 </html>

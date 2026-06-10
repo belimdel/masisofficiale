@@ -52,27 +52,12 @@ const services = [
       <div class="section-divider"></div>
     </div>
 
-    <!-- Hint swipe mobile -->
-    <div id="services-swipe-hint" class="md:hidden flex items-center justify-center gap-2 text-gray-400 text-sm mb-5" aria-hidden="true">
-      <span class="swipe-hint-icon">←</span>
-      <span>Glissez pour voir plus</span>
-      <span class="swipe-hint-icon" style="animation-delay:0.15s">→</span>
-    </div>
-
-    <!-- Grid desktop / Carousel mobile -->
-    <div
-      id="services-track"
-      class="max-md:h-[40vh] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8
-             max-md:flex max-md:gap-4 max-md:overflow-x-auto max-md:pb-3
-             max-md:snap-x max-md:snap-mandatory max-md:h-[40vh]"
-    >
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {services.map((service, index) => (
         <div
           data-reveal
           data-reveal-delay={String((index % 3) + 1)}
-          class="max-md:w-[100%] max-md:h-[100%] service-card group relative overflow-hidden cursor-pointer
-                 md:h-72
-                 max-md:snap-start max-md:shrink-0 max-md:w-[80vw] max-md:h-[40vh]"
+          class="service-card group relative h-72 overflow-hidden cursor-pointer"
           data-service-card
         >
           <!-- Image de fond -->
@@ -89,7 +74,7 @@ const services = [
             </h3>
           </div>
 
-          <!-- Overlay hover/tap -->
+          <!-- Overlay hover -->
           <div class="absolute inset-0 bg-gray-900/95 flex flex-col items-center justify-center p-8 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-[.is-open]:opacity-100">
             <h3 class="text-white font-black text-xl uppercase mb-4">
               {service.titre}
@@ -100,7 +85,7 @@ const services = [
             </p>
             <a
               href={service.href}
-              class="service-detail-link inline-flex items-center gap-2 border-2 border-green-500 text-green-400 font-bold px-6 py-2.5 uppercase tracking-wide text-sm hover:bg-green-600 hover:border-green-600 hover:text-white transition-all duration-200 tap-target active:scale-95"
+              class="service-detail-link inline-flex items-center gap-2 border-2 border-green-500 text-green-400 font-bold px-6 py-2.5 uppercase tracking-wide text-sm hover:bg-green-600 hover:border-green-600 hover:text-white transition-all duration-200"
             >
               En savoir plus
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -112,13 +97,10 @@ const services = [
       ))}
     </div>
 
-    <!-- Dots carousel (mobile uniquement) -->
-    <div id="services-dots" class="md:hidden carousel-dots" aria-hidden="true"></div>
-
     <div data-reveal class="text-center mt-16">
       <a
         href="/services"
-        class="inline-flex items-center gap-3 border-2 border-gray-900 text-gray-900 font-bold px-10 py-4 uppercase tracking-wide hover:bg-gray-900 hover:text-white transition-all duration-300 tap-target active:scale-95"
+        class="inline-flex items-center gap-3 border-2 border-gray-900 text-gray-900 font-bold px-10 py-4 uppercase tracking-wide hover:bg-gray-900 hover:text-white transition-all duration-300"
       >
         Voir tous nos services
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -131,7 +113,6 @@ const services = [
 </section>
 
 <script>
-  // ── Toggle overlay service cards ─────────────────────────
   document.querySelectorAll('[data-service-card]').forEach((card) => {
     card.addEventListener('click', () => {
       document.querySelectorAll('[data-service-card].is-open').forEach((other) => {
@@ -141,52 +122,7 @@ const services = [
     });
   });
 
-  // Empêche le clic "En savoir plus" de toggle la carte
   document.querySelectorAll('.service-detail-link').forEach((link) => {
     link.addEventListener('click', (e) => e.stopPropagation());
   });
-
-  // ── Carousel mobile : dots + dismiss hint ────────────────
-  const isMobile = () => window.innerWidth < 768;
-
-  if (isMobile()) {
-    const track = document.getElementById('services-track') as HTMLElement | null;
-    const dotsContainer = document.getElementById('services-dots');
-    const hint = document.getElementById('services-swipe-hint');
-    const cards = track?.querySelectorAll<HTMLElement>('[data-service-card]');
-
-    if (track && dotsContainer && cards && cards.length > 0) {
-      // Créer les dots
-      cards.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', `Service ${i + 1}`);
-        dot.addEventListener('click', () => {
-          const card = cards[i];
-          card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        });
-        dotsContainer.appendChild(dot);
-      });
-
-      const dots = dotsContainer.querySelectorAll('.carousel-dot');
-      const cardWidth = (cards[0].offsetWidth ?? 0) + 16;
-
-      // Sync dots au scroll
-      track.addEventListener('scroll', () => {
-        const activeIndex = Math.round(track.scrollLeft / cardWidth);
-        dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
-      }, { passive: true });
-
-      // Dismiss hint au premier scroll
-      let hintDismissed = false;
-      track.addEventListener('scroll', () => {
-        if (!hintDismissed && hint) {
-          hint.style.transition = 'opacity 0.3s';
-          hint.style.opacity = '0';
-          setTimeout(() => hint.remove(), 300);
-          hintDismissed = true;
-        }
-      }, { passive: true });
-    }
-  }
 </script>

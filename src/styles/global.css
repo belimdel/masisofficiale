@@ -114,27 +114,11 @@
 }
 
 /* ============================================================
-   TOUCH — feedback tactile
-   ============================================================ */
-@media (hover: none) {
-  a, button {
-    -webkit-tap-highlight-color: transparent;
-  }
-}
-
-.tap-target {
-  transition: transform 0.12s ease;
-}
-.tap-target:active {
-  transform: scale(0.95) !important;
-}
-
-/* ============================================================
    BARRE DE PROGRESSION SCROLL
    ============================================================ */
 #scroll-progress {
   position: fixed;
-  top: 0;
+  top: 72px;
   left: 0;
   height: 3px;
   width: 0%;
@@ -142,101 +126,4 @@
   z-index: 9999;
   pointer-events: none;
   will-change: width;
-}
-
-/* ============================================================
-   RIPPLE EFFECT
-   ============================================================ */
-
-.ripple-wave {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(0);
-  animation: ripple-expand 0.55s linear forwards;
-  pointer-events: none;
-}
-
-@keyframes ripple-expand {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-
-/* ============================================================
-   CAROUSEL DOTS
-   ============================================================ */
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.carousel-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #d1d5db;
-  transition: background 0.3s, width 0.3s, border-radius 0.3s;
-  cursor: pointer;
-  border: none;
-  padding: 0;
-}
-
-.carousel-dot.active {
-  background: #16a34a;
-  width: 24px;
-  border-radius: 4px;
-}
-
-/* ============================================================
-   SWIPE HINT
-   ============================================================ */
-@keyframes swipe-hint {
-  0%   { transform: translateX(0);    opacity: 1; }
-  40%  { transform: translateX(10px); opacity: 0.5; }
-  60%  { transform: translateX(10px); opacity: 0.5; }
-  100% { transform: translateX(0);    opacity: 1; }
-}
-
-.swipe-hint-icon {
-  display: inline-block;
-  animation: swipe-hint 2s ease-in-out 1.5s 2 forwards;
-}
-
-/* ============================================================
-   HINT BEFORE/AFTER SLIDER
-   ============================================================ */
-@keyframes hint-pulse {
-  0%   { opacity: 0; transform: scale(0.9); }
-  20%  { opacity: 1; transform: scale(1); }
-  80%  { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(0.9); }
-}
-
-.ba-hint-pill {
-  animation: hint-pulse 2.5s ease-in-out 1s 1 forwards;
-}
-
-/* ============================================================
-   MASQUER SCROLLBAR DES CAROUSELS
-   ============================================================ */
-#services-track::-webkit-scrollbar,
-#temoignages-track::-webkit-scrollbar {
-  display: none;
-}
-
-#services-track,
-#temoignages-track {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* ============================================================
-   OPTIMISATION BEFORE/AFTER SLIDER
-   ============================================================ */
-.ba-after {
-  will-change: clip-path;
 }

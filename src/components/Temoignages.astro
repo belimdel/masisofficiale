@@ -38,64 +38,42 @@ const temoignages = [
       <div class="w-14 h-1 bg-green-600 mx-auto mt-5"></div>
     </div>
 
-    <!-- Carousel wrapper -->
-    <div id="temoignages-carousel" class="relative max-md:overflow-hidden">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {temoignages.map((t, index) => (
+        <article
+          data-reveal
+          data-reveal-delay={String(index + 1)}
+          class="group bg-gray-800 hover:bg-gray-750 p-8 flex flex-col gap-5 border border-gray-700 hover:border-green-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40"
+        >
+          <!-- Étoiles -->
+          <div class="flex gap-1" aria-label={`Note : ${t.note} sur 5`}>
+            {Array.from({ length: t.note }).map(() => (
+              <span class="text-green-400 text-lg leading-none" aria-hidden="true">★</span>
+            ))}
+          </div>
 
-      <!-- Hint glissement mobile -->
-      <div id="temoignages-hint" class="md:hidden flex items-center justify-center gap-2 text-gray-400 text-sm mb-5" aria-hidden="true">
-        <span class="swipe-hint-icon">←</span>
-        <span>Faites glisser</span>
-        <span class="swipe-hint-icon" style="animation-delay:0.15s">→</span>
-      </div>
+          <!-- Guillemet décoratif -->
+          <svg class="w-8 h-8 text-green-600/30" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
 
-      <!-- Track -->
-      <div
-        id="temoignages-track"
-        class="grid grid-cols-1 md:grid-cols-3 gap-8
-               max-md:flex max-md:gap-5 max-md:overflow-x-auto
-               max-md:snap-x max-md:snap-mandatory"
-      >
-        {temoignages.map((t, index) => (
-          <article
-            data-reveal
-            data-reveal-delay={String(index + 1)}
-            class="group bg-gray-800 p-8 flex flex-col gap-5 border border-gray-700 hover:border-green-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40 tap-target
-                   max-md:w-full max-md:shrink-0 max-md:snap-start max-md:h-[55vh] max-md:justify-between"
-          >
-            <!-- Étoiles -->
-            <div class="flex gap-1" aria-label={`Note : ${t.note} sur 5`}>
-              {Array.from({ length: t.note }).map(() => (
-                <span class="text-green-400 text-lg leading-none" aria-hidden="true">★</span>
-              ))}
+          <!-- Texte -->
+          <blockquote class="text-gray-300 leading-relaxed flex-1 text-sm md:text-base">
+            {t.texte}
+          </blockquote>
+
+          <!-- Auteur -->
+          <footer class="border-t border-gray-700 pt-5 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-sm shrink-0">
+              {t.initiale}
             </div>
-
-            <!-- Guillemet décoratif -->
-            <svg class="w-8 h-8 text-green-600/30" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-            </svg>
-
-            <!-- Texte -->
-            <blockquote class="text-gray-300 leading-relaxed flex-1 text-sm md:text-base">
-              {t.texte}
-            </blockquote>
-
-            <!-- Auteur -->
-            <footer class="border-t border-gray-700 pt-5 flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-sm shrink-0">
-                {t.initiale}
-              </div>
-              <div>
-                <p class="text-white font-bold text-sm">{t.nom}</p>
-                <p class="text-gray-400 text-xs">{t.lieu} · {t.service}</p>
-              </div>
-            </footer>
-          </article>
-        ))}
-      </div>
-
-      <!-- Dots mobile -->
-      <div id="temoignages-dots" class="md:hidden carousel-dots mt-8" aria-hidden="true"></div>
-
+            <div>
+              <p class="text-white font-bold text-sm">{t.nom}</p>
+              <p class="text-gray-400 text-xs">{t.lieu} · {t.service}</p>
+            </div>
+          </footer>
+        </article>
+      ))}
     </div>
 
     <!-- Lien Google -->
@@ -108,47 +86,3 @@ const temoignages = [
 
   </div>
 </section>
-
-<script>
-  import { gsap } from 'gsap';
-
-  const isMobile = () => window.innerWidth < 768;
-
-  if (isMobile()) {
-    const track = document.getElementById('temoignages-track') as HTMLElement | null;
-    const dotsContainer = document.getElementById('temoignages-dots');
-    const hint = document.getElementById('temoignages-hint');
-
-    if (track && dotsContainer) {
-      const cards = track.querySelectorAll<HTMLElement>('article');
-
-      // Créer les dots
-      cards.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', `Avis ${i + 1}`);
-        dot.addEventListener('click', () => {
-          cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-        });
-        dotsContainer.appendChild(dot);
-      });
-
-      const dots = dotsContainer.querySelectorAll('.carousel-dot');
-      let hintDismissed = false;
-
-      // Sync dots + dismiss hint au scroll
-      track.addEventListener('scroll', () => {
-        const cardWidth = track.offsetWidth;
-        if (cardWidth > 0) {
-          const activeIndex = Math.round(track.scrollLeft / cardWidth);
-          dots.forEach((d, i) => d.classList.toggle('active', i === activeIndex));
-        }
-
-        if (!hintDismissed && hint && track.scrollLeft > 10) {
-          hintDismissed = true;
-          gsap.to(hint, { opacity: 0, duration: 0.25, onComplete: () => hint.remove() });
-        }
-      }, { passive: true });
-    }
-  }
-</script>
